@@ -7,7 +7,7 @@ This add-on allows you to upload your HomeAssistant backups to your Dropbox, kee
 This add-on uses the [Dropbox-Uploader](https://github.com/andreafabrizi/Dropbox-Uploader) bash script to upload files to Dropbox. It requires that you generate an access token via the Dropbox Web UI, which must be added to this add-on's configuration via the HomeAssistant UI (see below for further details).
 
 ### Installation
-1. Add the add-ons repository to your HomeAssistant instance: `https://github.com/peterlindeman/homeassistant-dropbox-sync`
+1. Add the add-ons repository to your HomeAssistant instance: `https://github.com/peterlindeman/homeassistant-addons`
 2. Install the Dropbox Sync add-on
 3. Configure the add-on with your Dropbox OAuth Token and desired output directory (see configuration below)
 
