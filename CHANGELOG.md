@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.0.0](https://github.com/peterlindeman/homeassistant-dropbox-sync/releases/tag/v2.0.0) - 2023-12-18
+### Changed
+- Forked and updated to make it compatible with HomeAssisant 2023.12
 
 ## [1.3.0](https://github.com/danielwelch/hassio-dropbox-sync/releases/tag/v1.1.2) - 2018-03-27
 ### Changed

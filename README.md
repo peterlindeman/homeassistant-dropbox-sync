@@ -1,19 +1,19 @@
-# Hass.io Add-on: Dropbox Sync
-Back up your Hass.io snapshots to Dropbox.
+# HomeAssistant Add-on: Dropbox Sync
+Back up your HomeAssistant backups to Dropbox.
 
 ### About
-This add-on allows you to upload your Hass.io snapshots to your Dropbox, keeping your snapshots safe and available in case of hardware failure. Uploads are triggered via a service call, making it easy to automate periodic backups or trigger uploads to Dropbox via script as you would with any other Home Assistant service.
+This add-on allows you to upload your HomeAssistant backups to your Dropbox, keeping your backups safe and available in case of hardware failure. Uploads are triggered via a service call, making it easy to automate periodic backups or trigger uploads to Dropbox via script as you would with any other Home Assistant service.
 
 This add-on uses the [Dropbox-Uploader](https://github.com/andreafabrizi/Dropbox-Uploader) bash script to upload files to Dropbox. It requires that you generate an access token via the Dropbox Web UI, which must be added to this add-on's configuration via the Hass.io UI (see below for further details).
 
 ### Installation
-1. Add the add-ons repository to your Hass.io instance: `https://github.com/danielwelch/hassio-addons`
+1. Add the add-ons repository to your Hass.io instance: `https://github.com/peterlindeman/homeassistant-dropbox-sync`
 2. Install the Dropbox Sync add-on
 3. Configure the add-on with your Dropbox OAuth Token and desired output directory (see configuration below)
 
 ### Usage
 
-Dropbox Sync uploads all snapshot files (specifically, all `.tar` files) in the Hass.io `/backup` directory to a specified path in your Dropbox. This target path is specified via the `output` option. Once the add-on is started, it is listening for service calls.
+Dropbox Sync uploads all backup files (specifically, all `.tar` files) in the HomeAssistant `/backup` directory to a specified path in your Dropbox. This target path is specified via the `output` option. Once the add-on is started, it is listening for service calls.
 
 After the add-on is configured and started, trigger an upload by calling the `hassio.addon_stdin` service with the following service data:
 
