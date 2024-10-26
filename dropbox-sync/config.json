@@ -25,6 +25,5 @@
     "output": "str",
     "keep_last": "int(0,)?",
     "filetypes": "str?"
-  },
-  "image": "dwelch2101/dropbox-sync-{arch}"
+  }
 }
