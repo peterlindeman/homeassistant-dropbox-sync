@@ -25,11 +25,31 @@ while read -r msg; do
     cmd="$(echo "$msg" | jq --raw-output '.command')"
     echo "[Info] Received message with command ${cmd}"
     if [[ $cmd = "upload" ]]; then
-        echo "[Info] Uploading all .tar files in /backup (skipping those already in Dropbox)"
+        echo "[Info] Uploading all .tar files in /backup (skipping those already in :qx)"
         ./dropbox_uploader.sh -s -f /etc/uploader.conf upload /backup/*.tar "$OUTPUT_DIR"
         if [[ "$KEEP_LAST" ]]; then
             echo "[Info] keep_last option is set, cleaning up files..."
             python3 /keep_last.py "$KEEP_LAST"
+
+            # Retrieve all filenames in the directory, using the config file
+            ALL_FILES=($(/dropbox_uploader.sh -f /etc/uploader.conf list "$DROPBOX_DIR" | tail -n +2 | awk '{print $3}'))
+
+            # Select the latest $KEEP_LAST files (last $KEEP_LAST entries in the list)
+            LATEST_FILES=('${ALL_FILES[@]: -$KEEP_LAST}')
+
+            # Create a list of files to delete (all files except the latest 10)
+            FILES_TO_DELETE=()
+            for file in "${ALL_FILES[@]}"; do
+                if [[ ! " ${LATEST_FILES[@]} " =~ " ${file} " ]]; then
+                    FILES_TO_DELETE+=("$file")
+                fi
+            done
+
+            # Delete the older files, using the config file
+            for FILE in "${FILES_TO_DELETE[@]}"; do
+            #    ./dropbox_uploader.sh -f /etc/uploader.conf delete "$DROPBOX_DIR/$FILE"
+            echo "Going to delete $DROPBOX_DIR/$FILE"
+            done
         fi
         if [[ "$FILETYPES" ]]; then
             echo "[Info] filetypes option is set, scanning share directory for files with extensions ${FILETYPES}"
